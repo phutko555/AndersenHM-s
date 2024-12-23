@@ -20,7 +20,8 @@ public class Main {
         System.out.println("Welcome to The Coworking Space Reservation Application !");
         Scanner sc = new Scanner(System.in);
         String menu = getMenu();
-        Admin ad = new Admin();
+        WorkspaceManager workspaceManager = new WorkspaceManager();
+        Admin ad = new Admin(workspaceManager);
         while (!menu.equals("3")) {
             switch (menu) {
                 case "1":
@@ -50,7 +51,7 @@ public class Main {
                                     double price = Double.parseDouble(split[2]);
                                     boolean available = Boolean.parseBoolean(split[3]);
                                     System.out.println("^----------------------------------------------------------^");
-                                    ad.addCoSpace(new WorkSpace(coId, name, price, available));
+                                    ad.addCoSpace(new WorkSpaces(coId, name, price, available));
                                 } else {
                                     System.out.println("Invalid input form. please provide 4 attributes");
                                 }
@@ -81,7 +82,8 @@ public class Main {
                     }
                     break;
                 case "2":
-                    Customer customer = new Customer(ad);
+                    Reservations reservations = new Reservations();
+                    Customer customer = new Customer(reservations,workspaceManager);
                     while (true) {
                         String custOption = ("""
                                 Customer Menu:

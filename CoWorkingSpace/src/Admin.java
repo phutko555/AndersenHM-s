@@ -1,20 +1,20 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class Admin {
-    private List<WorkSpace> work;
-    public Admin() {
-        this.work = new ArrayList<>();
 
+    private WorkspaceManager workspaceManager;
+
+    public Admin(WorkspaceManager workSpace) {
+        this.workspaceManager = workSpace;
     }
-    public void addCoSpace(WorkSpace workSpace) {
-        work.add(workSpace);
-        System.out.println("Added Successfully: " + workSpace);
+
+    public void addCoSpace(WorkSpaces workSpaces) {
+        workspaceManager.getSpaces().add(workSpaces);
+        System.out.println("Added successfully: " + workSpaces);
     }
     public void removeCoSpace(int id) {
-        for (int i = 0; i < work.size(); i++) {
-            if (work.get(i).getId() == id) {
-                work.remove(i);
+        for (int i = 0; i < workspaceManager.getSpaces().size(); i++) {
+            if (workspaceManager.getSpaces().get(i).getId() == id) {
+                workspaceManager.getSpaces().remove(i);
                 System.out.println("Workspace with ID " + id + " removed successfully.");
                 return;
             }
@@ -22,16 +22,17 @@ public class Admin {
         System.out.println("Workspace with ID " + id + " not found.");
     }
 
-    public List<WorkSpace> getWork() {
-        return work;
-    }
-
     public void viewAllReservations(){
         System.out.println("Reservations: ");
-        for(WorkSpace work1 : work){
+        for(WorkSpaces work1 : workspaceManager.getSpaces()){
             if(!work1.isAvailabilityStatus()){
                 System.out.println(work1);
             }
         }
     }
 }
+
+
+
+
+

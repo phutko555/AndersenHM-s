@@ -1,13 +1,13 @@
 
 
-public class WorkSpace {
+public class WorkSpaces {
 
     private int id;
     private String type;
     private double price;
     private boolean availabilityStatus;
 
-    public WorkSpace(int id, String type, double price, boolean availabilityStatus) {
+    public WorkSpaces(int id, String type, double price, boolean availabilityStatus) {
         this.id = id;
         this.type = type;
         this.price = price;
