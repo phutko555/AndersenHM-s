@@ -1,7 +1,4 @@
-
-
 public class WorkSpaces {
-
     private int id;
     private String type;
     private double price;
@@ -17,15 +14,12 @@ public class WorkSpaces {
     public int getId() {
         return id;
     }
-
     public boolean isAvailabilityStatus() {
         return availabilityStatus;
     }
-
     public void setAvailabilityStatus(boolean availabilityStatus) {
         this.availabilityStatus = availabilityStatus;
     }
-
     @Override
     public String toString() {
         return "WorkSpace{" +

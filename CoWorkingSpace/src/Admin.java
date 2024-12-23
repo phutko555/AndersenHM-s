@@ -1,8 +1,6 @@
 
 public class Admin {
-
     private WorkspaceManager workspaceManager;
-
     public Admin(WorkspaceManager workSpace) {
         this.workspaceManager = workSpace;
     }
@@ -31,8 +29,3 @@ public class Admin {
         }
     }
 }
-
-
-
-
-

@@ -1,17 +1,12 @@
 
-
 public class Customer{
-
     private Reservations reservations;
-
     private WorkspaceManager workspaceManager;
 
     public Customer(Reservations reservations, WorkspaceManager workspaceManager) {
         this.reservations = reservations;
         this.workspaceManager = workspaceManager;
     }
-
-
     public void browseAvailableSpaces(){
         boolean available = false;
         System.out.println("Available spaces: ");
@@ -50,7 +45,6 @@ public class Customer{
                 System.out.println(workSpaces);
             }
         }
-
     }
     public void cancelReservation(int id){
         WorkSpaces worker = null;
@@ -63,7 +57,6 @@ public class Customer{
         if(worker != null){
             reservations.getReservations().remove(worker);
             System.out.println("Reservation with ID: " + id +" Removed Successfully");
-
         }else{
             System.out.println("No active reservation found with ID " + id);
         }

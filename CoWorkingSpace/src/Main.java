@@ -60,7 +60,6 @@ public class Main {
                             System.out.println("^----------------------------------------------------------^");
                             ad.viewAllReservations();
                         } else if (adminOptionSc.equals("2")) {
-
                             System.out.println("----------------------------------------------------------");
                             System.out.print("Please choose ID which you want to delete: ");
                             try{
@@ -70,8 +69,6 @@ public class Main {
                             }catch (NumberFormatException e ){
                                 System.out.println("Please, Enter number ");
                             }
-
-
                         } else if (adminOptionSc.equals("4")) {
                             menu = getMenu();
                             break;
@@ -102,7 +99,6 @@ public class Main {
                         } else if (custOptionSc.equals("5")) {
                             menu = getMenu();
                             break;
-
                         }else if(custOptionSc.equals("2")){
                             System.out.println("---------------------------------------------------------");
                             System.out.println("Please enter the ID which you want to reserve");
@@ -113,15 +109,12 @@ public class Main {
                             }catch (NumberFormatException e ){
                                 System.out.println("Please, Enter number ");
                             }
-
-
                         }else if(custOptionSc.equals("3")){
                             System.out.println("---------------------------------------------------------");
                             customer.ownReservation();
                         }else if(custOptionSc.equals("4")){
                             System.out.println("---------------------------------------------------------");
                             System.out.println("Please enter the ID which you want to cancel");
-
                             try{
                                 String input = sc.nextLine();
                                 int parseInput = Integer.parseInt(input); // parse to clear input buffer
@@ -129,7 +122,6 @@ public class Main {
                             }catch(NumberFormatException e){
                                 System.out.println("Please, Enter number ");
                             }
-
                         }else {
                             System.out.println("----------------------------------------------------------");
                             System.out.println("Please enter valid input (1, 2, 3, 4, 5)");
