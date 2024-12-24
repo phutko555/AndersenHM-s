@@ -1,6 +1,7 @@
+import java.io.*;
 import java.util.Scanner;
 public class Main {
-    public static String getMenu(){
+    public static String getMenu() {
         Scanner sc = new Scanner(System.in);
         String menu;
         while (true) {
@@ -16,6 +17,7 @@ public class Main {
         }
         return menu;
     }
+
     public static void main(String[] args) {
         System.out.println("Welcome to The Coworking Space Reservation Application !");
         Scanner sc = new Scanner(System.in);
@@ -62,17 +64,19 @@ public class Main {
                         } else if (adminOptionSc.equals("2")) {
                             System.out.println("----------------------------------------------------------");
                             System.out.print("Please choose ID which you want to delete: ");
-                            try{
+                            try {
                                 String input = sc.nextLine();
                                 int parseInput = Integer.parseInt(input); // parse to clear input buffer
                                 ad.removeCoSpace(parseInput);
-                            }catch (NumberFormatException e ){
+                            } catch (NumberFormatException e) {
                                 System.out.println("Please, Enter number ");
+                            } catch (NotFoundException e) {
+                                System.out.println(e.getMessage());
                             }
                         } else if (adminOptionSc.equals("4")) {
                             menu = getMenu();
                             break;
-                        }else{
+                        } else {
                             System.out.println("----------------------------------------------------------");
                             System.out.println("Please enter valid input (1, 2, 3, 4)");
                         }
@@ -80,7 +84,7 @@ public class Main {
                     break;
                 case "2":
                     Reservations reservations = new Reservations();
-                    Customer customer = new Customer(reservations,workspaceManager);
+                    Customer customer = new Customer(reservations, workspaceManager);
                     while (true) {
                         String custOption = ("""
                                 Customer Menu:
@@ -99,37 +103,51 @@ public class Main {
                         } else if (custOptionSc.equals("5")) {
                             menu = getMenu();
                             break;
-                        }else if(custOptionSc.equals("2")){
+                        } else if (custOptionSc.equals("2")) {
                             System.out.println("---------------------------------------------------------");
                             System.out.println("Please enter the ID which you want to reserve");
-                            try{
+                            try {
                                 String input = sc.nextLine();
                                 int parseInput = Integer.parseInt(input); // parse to clear input buffer
                                 customer.makeReservation(parseInput);
-                            }catch (NumberFormatException e ){
+                            } catch (NumberFormatException e) {
                                 System.out.println("Please, Enter number ");
+                            } catch (NotFoundException e) {
+                                System.out.println(e.getMessage());
                             }
-                        }else if(custOptionSc.equals("3")){
+                        } else if (custOptionSc.equals("3")) {
                             System.out.println("---------------------------------------------------------");
                             customer.ownReservation();
-                        }else if(custOptionSc.equals("4")){
+                        } else if (custOptionSc.equals("4")) {
                             System.out.println("---------------------------------------------------------");
                             System.out.println("Please enter the ID which you want to cancel");
-                            try{
+                            try {
                                 String input = sc.nextLine();
                                 int parseInput = Integer.parseInt(input); // parse to clear input buffer
                                 customer.cancelReservation(parseInput);
-                            }catch(NumberFormatException e){
+                            } catch (NumberFormatException e) {
                                 System.out.println("Please, Enter number ");
+                            } catch (NotFoundException e) {
+                                System.out.println(e.getMessage());
                             }
-                        }else {
+                        } else {
                             System.out.println("----------------------------------------------------------");
                             System.out.println("Please enter valid input (1, 2, 3, 4, 5)");
                         }
                     }
                     break;
-
             }
+        }
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("/Users/giorgi/Desktop/newfile/gaumarjoskaci.txt"))) {
+            objectOutputStream.writeObject(workspaceManager);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("/Users/giorgi/Desktop/newfile/gaumarjoskaci.txt"))) {
+            WorkspaceManager workspaceManager1 = (WorkspaceManager) objectInputStream.readObject();
+            System.out.println("Deserialization WorkSpaceManager: " + workspaceManager1.getSpaces());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

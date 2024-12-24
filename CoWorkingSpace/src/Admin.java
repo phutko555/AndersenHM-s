@@ -1,5 +1,7 @@
+import java.io.Serializable;
 
-public class Admin {
+public class Admin implements Serializable {
+    private static final long serialVersionUID = 5467568632194107991L;
     private WorkspaceManager workspaceManager;
     public Admin(WorkspaceManager workSpace) {
         this.workspaceManager = workSpace;
@@ -9,7 +11,7 @@ public class Admin {
         workspaceManager.getSpaces().add(workSpaces);
         System.out.println("Added successfully: " + workSpaces);
     }
-    public void removeCoSpace(int id) {
+    public void removeCoSpace(int id) throws NotFoundException{
         for (int i = 0; i < workspaceManager.getSpaces().size(); i++) {
             if (workspaceManager.getSpaces().get(i).getId() == id) {
                 workspaceManager.getSpaces().remove(i);
@@ -17,9 +19,8 @@ public class Admin {
                 return;
             }
         }
-        System.out.println("Workspace with ID " + id + " not found.");
+        throw new NotFoundException("Workspace with ID " + id + " not found!");
     }
-
     public void viewAllReservations(){
         System.out.println("Reservations: ");
         for(WorkSpaces work1 : workspaceManager.getSpaces()){
@@ -27,5 +28,6 @@ public class Admin {
                 System.out.println(work1);
             }
         }
+
     }
 }

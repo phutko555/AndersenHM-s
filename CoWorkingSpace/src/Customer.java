@@ -1,5 +1,8 @@
+import java.io.Serializable;
 
-public class Customer{
+public class Customer implements Serializable {
+
+    private static final long serialVersionUID = 134528019936612357L;
     private Reservations reservations;
     private WorkspaceManager workspaceManager;
 
@@ -20,7 +23,7 @@ public class Customer{
             System.out.println("There are no available spaces");
         }
     }
-    public void makeReservation(int id ){
+    public void makeReservation(int id ) throws NotFoundException{
         WorkSpaces worker = null;
         for (WorkSpaces workSpaces : workspaceManager.getSpaces()) {
             if(workSpaces.isAvailabilityStatus() && workSpaces.getId() == id){
@@ -33,7 +36,8 @@ public class Customer{
             reservations.getReservations().add(worker);
             System.out.println("Reservation successful for workspace with ID: " + id);
         } else {
-            System.out.println("No available workspace found with ID " + id);
+            throw new NotFoundException("No available workspace found with ID " + id);
+
         }
 
     }
@@ -46,7 +50,7 @@ public class Customer{
             }
         }
     }
-    public void cancelReservation(int id){
+    public void cancelReservation(int id) throws NotFoundException{
         WorkSpaces worker = null;
         for(WorkSpaces workSpaces : reservations.getReservations()){
             if(workSpaces.getId() == id){
@@ -58,7 +62,7 @@ public class Customer{
             reservations.getReservations().remove(worker);
             System.out.println("Reservation with ID: " + id +" Removed Successfully");
         }else{
-            System.out.println("No active reservation found with ID " + id);
+            throw new NotFoundException("No active reservation found with ID " + id);
         }
     }
 }
