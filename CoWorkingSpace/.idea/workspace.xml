@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ba53bb0-7a84-4a93-bf1c-539b17480e63" name="Changes" comment="" />
+    <list default="true" id="0ba53bb0-7a84-4a93-bf1c-539b17480e63" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoWorkingSpace/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoWorkingSpace/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoWorkingSpace/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reservations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reservations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WorkSpaces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WorkSpaces.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WorkspaceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WorkspaceManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +30,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="CoWorkingSpace-hm" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
@@ -28,16 +45,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "CoWorkingSpace-hm",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/giorgi/AndersenHM-s/CoWorkingSpace",
-    "onboarding.tips.debug.path": "/Users/giorgi/Desktop/CoWorkingSpace/src/Main.java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;CoWorkingSpace-hm#2&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/giorgi/AndersenHM-s/CoWorkingSpace&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/giorgi/Desktop/CoWorkingSpace/src/Main.java&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
