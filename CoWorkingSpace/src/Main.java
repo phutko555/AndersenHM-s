@@ -17,8 +17,19 @@ public class Main {
         }
         return menu;
     }
-
     public static void main(String[] args) {
+        String directory = "/Users/giorgi/AndersenHM-s/CoWorkingSpace/classes";
+        try {
+            CustomClassLoader loader = new CustomClassLoader(directory);
+            Class<?> clazz = loader.loadClass("Admin");
+
+            Object adminInstance = clazz.getDeclaredConstructor().newInstance();
+            System.out.println("Successfully loaded Admin class: " + adminInstance);
+
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
         System.out.println("Welcome to The Coworking Space Reservation Application !");
         Scanner sc = new Scanner(System.in);
         String menu = getMenu();

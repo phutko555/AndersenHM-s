@@ -3,6 +3,9 @@ import java.io.Serializable;
 public class Admin implements Serializable {
     private static final long serialVersionUID = 5467568632194107991L;
     private WorkspaceManager workspaceManager;
+
+    public Admin() {
+    }
     public Admin(WorkspaceManager workSpace) {
         this.workspaceManager = workSpace;
     }
@@ -28,6 +31,5 @@ public class Admin implements Serializable {
                 System.out.println(work1);
             }
         }
-
     }
 }
