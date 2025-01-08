@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ba53bb0-7a84-4a93-bf1c-539b17480e63" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/CustomClassLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CustomArray.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoWorkingSpace/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoWorkingSpace/Customer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoWorkingSpace/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reservations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reservations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WorkspaceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WorkspaceManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +46,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "CoWorkingSpace-hm#3",
+    "git-widget-placeholder": "CoWorkingSpace-hm#4",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/giorgi/AndersenHM-s/CoWorkingSpace",
     "onboarding.tips.debug.path": "/Users/giorgi/Desktop/CoWorkingSpace/src/Main.java"
@@ -60,5 +62,16 @@
       <updated>1734723284330</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
