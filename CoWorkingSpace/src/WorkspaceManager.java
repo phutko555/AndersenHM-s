@@ -3,12 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkspaceManager implements Serializable {
-    private  List<WorkSpaces> spaces;
+    private CustomArray<WorkSpaces> spaces;
     public WorkspaceManager() {
-        this.spaces = new ArrayList<>();
+        this.spaces = new CustomArray<>();
     }
 
-    public List<WorkSpaces> getSpaces() {
+    public CustomArray<WorkSpaces> getSpaces() {
         return spaces;
     }
 }

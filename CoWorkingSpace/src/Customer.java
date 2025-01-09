@@ -59,7 +59,7 @@ public class Customer implements Serializable {
             }
         }
         if(worker != null){
-            reservations.getReservations().remove(worker);
+            reservations.getReservations().remove(worker.getId());
             System.out.println("Reservation with ID: " + id +" Removed Successfully");
         }else{
             throw new NotFoundException("No active reservation found with ID " + id);
