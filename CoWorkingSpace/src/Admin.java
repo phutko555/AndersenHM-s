@@ -1,5 +1,4 @@
 import java.io.Serializable;
-
 public class Admin implements Serializable {
     private static final long serialVersionUID = 5467568632194107991L;
     private WorkspaceManager workspaceManager;
@@ -25,11 +24,12 @@ public class Admin implements Serializable {
         throw new NotFoundException("Workspace with ID " + id + " not found!");
     }
     public void viewAllReservations(){
-        System.out.println("Reservations: ");
-        for(WorkSpaces work1 : workspaceManager.getSpaces()){
-            if(!work1.isAvailabilityStatus()){
-                System.out.println(work1);
+        workspaceManager.getSpaces().stream().forEach(x -> {
+            if(!x.isAvailabilityStatus()){
+                System.out.println("Reservation: " + x);
+            }else{
+                System.out.println("There aren't any reservations");
             }
-        }
+        });
     }
 }

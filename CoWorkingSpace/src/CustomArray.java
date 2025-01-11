@@ -1,13 +1,13 @@
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class CustomArray<T> implements Iterable<T>, Serializable {
     private Object[] arr;
 
     private int count;
+
 
     public CustomArray() {
         this.arr = new Object[3];
@@ -56,6 +56,26 @@ public class CustomArray<T> implements Iterable<T>, Serializable {
     }
     public boolean isEmpty(){
         return count == 0;
+    }
+
+    @Override
+    public Spliterator<T> spliterator() {
+        return new Spliterators.AbstractSpliterator<T>(count, 0) {
+            private int index = 0;
+
+            @Override
+            public boolean tryAdvance(java.util.function.Consumer<? super T> action) {
+                if (index < count) {
+                    action.accept((T) arr[index++]);
+                    return true;
+                }
+                return false;
+            }
+        };
+    }
+
+    public Stream<T> stream() {
+        return StreamSupport.stream(this.spliterator(), false);
     }
 }
 
