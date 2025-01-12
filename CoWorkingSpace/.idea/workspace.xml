@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ba53bb0-7a84-4a93-bf1c-539b17480e63" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/test/AdminTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CustomerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoWorkingSpace/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoWorkingSpace/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoWorkingSpace.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CoWorkingSpace.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Customer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CustomArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WorkSpaces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WorkSpaces.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,11 +49,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.AdminTest.executor": "Run",
+    "JUnit.CustomerTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "CoWorkingSpace-hm#5",
+    "git-widget-placeholder": "CoWorkingSpace-hm#7",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/giorgi/AndersenHM-s/CoWorkingSpace",
-    "onboarding.tips.debug.path": "/Users/giorgi/Desktop/CoWorkingSpace/src/Main.java"
+    "onboarding.tips.debug.path": "/Users/giorgi/Desktop/CoWorkingSpace/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

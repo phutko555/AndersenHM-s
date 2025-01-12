@@ -8,12 +8,12 @@ public class CustomArray<T> implements Iterable<T>, Serializable {
 
     private int count;
 
-
     public CustomArray() {
         this.arr = new Object[3];
     }
-    public void add(T item){
-        if(arr.length == count) {
+
+    public void add(T item) {
+        if (arr.length == count) {
             Object[] newItems = new Object[count * 2];
             for (int i = 0; i < count; i++)
                 newItems[i] = arr[i];
@@ -22,19 +22,20 @@ public class CustomArray<T> implements Iterable<T>, Serializable {
         arr[count++] = item;
     }
 
-    public void remove(int index){
-        for(int i = index; i < count - 1; i++) {
+    public void remove(int index) {
+        for (int i = index; i < count - 1; i++) {
             arr[i] = arr[i + 1];
         }
         arr[count - 1] = 0;
         count--;
     }
-    public int size(){
+
+    public int size() {
         return count;
     }
 
-    public T get(int index){
-        for(int i = 0; i < count; i++){
+    public T get(int index) {
+        for (int i = 0; i < count; i++) {
             return (T) arr[index];
         }
         throw new IndexOutOfBoundsException("Index out of bounds");
@@ -44,18 +45,30 @@ public class CustomArray<T> implements Iterable<T>, Serializable {
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             private int index = 0;
+
             @Override
             public boolean hasNext() {
                 return index < count;
             }
+
             @Override
             public T next() {
                 return (T) arr[index++];
             }
         };
     }
-    public boolean isEmpty(){
+
+    public boolean isEmpty() {
         return count == 0;
+    }
+
+    public boolean contains(T item) {
+        for (int i = 0; i < count; i++) {
+            if (arr[i] == item) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
