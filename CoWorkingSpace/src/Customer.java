@@ -1,44 +1,50 @@
+import service.reservation.ReservationsService;
+
 import java.io.Serializable;
-import java.util.Optional;
+import java.sql.SQLException;
 
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 134528019936612357L;
-    private Reservations reservations;
-    private WorkspaceManager workspaceManager;
+    ReservationsService reservationsService;
 
-    public Customer(Reservations reservations, WorkspaceManager workspaceManager) {
-        this.reservations = reservations;
-        this.workspaceManager = workspaceManager;
+    public Customer(ReservationsService reservationsService) {
+        this.reservationsService = reservationsService;
     }
-    public void browseAvailableSpaces(){
-        long availableCount = workspaceManager.getSpaces().stream().filter(x -> x.isAvailabilityStatus())
-                .peek(x-> System.out.println("Available: " + x)).count();
-        if(availableCount == 0){
-            System.out.println("There aren't any available spaces");
+
+    public void getAvailableSpaces() throws SQLException {
+        try{
+            System.out.println("Available Spaces: ");
+            reservationsService.getAvailableSpaces();
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
         }
     }
-    public void makeReservation(int id) throws NotFoundException{
-        WorkSpaces work = workspaceManager.getSpaces().stream().filter(x -> x.isAvailabilityStatus() && x.getId() == id)
-                .findFirst().orElseThrow(() -> new NotFoundException("No available workspace found with ID " + id));
 
-            work.setAvailabilityStatus(false);
-            reservations.getReservations().add(work);
-            System.out.println("Reservation successful for workspace with ID: " + id);
+    public void makeReservation(int id) throws SQLException {
+        try{
+            reservationsService.makeReservation(id);
+            System.out.println("Reserved Successfully");
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void ownReservations() throws SQLException{
+        try{
+            System.out.println("Reservations : ");
+            reservationsService.ownReservations();
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+    public void cancelReservation(int id) throws SQLException{
+        try{
+            reservationsService.cancelReservation(id);
+            System.out.println("Reservation cancelled successfully");
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void ownReservation(){
-        reservations.getReservations().stream().findFirst().ifPresentOrElse
-                (x -> reservations.getReservations().forEach(System.out::println),
-                () -> System.out.println("You don't have any reservations."));
-    }
-
-    public void cancelReservation(int id) throws NotFoundException{
-        WorkSpaces workSpaces = reservations.getReservations().stream().
-                filter(x -> x.getId() == id).findFirst().
-                orElseThrow(() -> new NotFoundException("No active reservation found with ID " + id));
-
-            reservations.getReservations().remove(workSpaces.getId());
-            System.out.println("Reservation with ID: " + id +" Removed Successfully");
-    }
 }

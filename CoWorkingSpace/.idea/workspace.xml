@@ -5,18 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ba53bb0-7a84-4a93-bf1c-539b17480e63" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/AdminTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/CustomerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/reservations/ReservationsDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/reservations/ReservationsDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/workspace/WorkSpaceDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/workspace/WorkSpaceDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/reservation/ReservationsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/workspace/WorkSpaceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/DatabaseConnectionManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/app/dao/admin/AdminTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/app/dao/reservations/CustomerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoWorkingSpace.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CoWorkingSpace.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Customer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoWorkingSpace/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WorkSpaces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WorkSpaces.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CustomArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reservations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WorkSpaces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/WorkSpaces.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WorkspaceManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CustomArray$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CustomArray$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CustomArray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/NotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Reservations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/WorkSpaces.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/WorkspaceManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/coworking-space-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/coworking-space-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/AdminTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/CustomerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/AdminTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/CustomerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +55,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="CoWorkingSpace-hm" />
+        <entry key="$PROJECT_DIR$/.." value="CoWorkingSpace-hm#7" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -46,22 +69,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "JUnit.AdminTest.executor": "Run",
-    "JUnit.CustomerTest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "CoWorkingSpace-hm#7",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/giorgi/AndersenHM-s/CoWorkingSpace",
-    "onboarding.tips.debug.path": "/Users/giorgi/Desktop/CoWorkingSpace/src/Main.java",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AdminTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CustomerTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;CoWorkingSpace-hm#8&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/giorgi/AndersenHM-s/CoWorkingSpace&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/giorgi/Desktop/CoWorkingSpace/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

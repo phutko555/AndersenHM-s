@@ -1,4 +1,12 @@
-import java.io.*;
+import dao.workspace.WorkSpaceDAO;
+import dao.workspace.WorkSpaceDAOImpl;
+import dao.reservations.ReservationsDAO;
+import dao.reservations.ReservationsDAOImpl;
+import model.WorkSpaces;
+import service.workspace.WorkSpaceService;
+import service.reservation.ReservationsService;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 public class Main {
     public static String getMenu() {
@@ -17,7 +25,7 @@ public class Main {
         }
         return menu;
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         String directory = "/Users/giorgi/AndersenHM-s/CoWorkingSpace/classes";
         try {
             CustomClassLoader loader = new CustomClassLoader(directory);
@@ -33,8 +41,9 @@ public class Main {
         System.out.println("Welcome to The Coworking Space Reservation Application !");
         Scanner sc = new Scanner(System.in);
         String menu = getMenu();
-        WorkspaceManager workspaceManager = new WorkspaceManager();
-        Admin ad = new Admin(workspaceManager);
+        WorkSpaceDAO workSpaceDAO = new WorkSpaceDAOImpl();
+        WorkSpaceService workSpaceService = new WorkSpaceService(workSpaceDAO);
+        Admin ad = new Admin(workSpaceService);
         while (!menu.equals("3")) {
             switch (menu) {
                 case "1":
@@ -64,7 +73,7 @@ public class Main {
                                     double price = Double.parseDouble(split[2]);
                                     boolean available = Boolean.parseBoolean(split[3]);
                                     System.out.println("^----------------------------------------------------------^");
-                                    ad.addCoSpace(new WorkSpaces(coId, name, price, available));
+                                    ad.addWorkSpace(new WorkSpaces(coId, name, price, available));
                                 } else {
                                     System.out.println("Invalid input form. please provide 4 attributes");
                                 }
@@ -78,11 +87,9 @@ public class Main {
                             try {
                                 String input = sc.nextLine();
                                 int parseInput = Integer.parseInt(input); // parse to clear input buffer
-                                ad.removeCoSpace(parseInput);
+                                ad.removeWorkSpace(parseInput);
                             } catch (NumberFormatException e) {
                                 System.out.println("Please, Enter number ");
-                            } catch (NotFoundException e) {
-                                System.out.println(e.getMessage());
                             }
                         } else if (adminOptionSc.equals("4")) {
                             menu = getMenu();
@@ -94,8 +101,9 @@ public class Main {
                     }
                     break;
                 case "2":
-                    Reservations reservations = new Reservations();
-                    Customer customer = new Customer(reservations, workspaceManager);
+                    ReservationsDAO reservationsDAO = new ReservationsDAOImpl();
+                    ReservationsService reservationsService = new ReservationsService(reservationsDAO);
+                    Customer customer = new Customer(reservationsService);
                     while (true) {
                         String custOption = ("""
                                 Customer Menu:
@@ -110,7 +118,7 @@ public class Main {
                         System.out.print("Please, choose one of them (1, 2, 3, 4, 5): ");
                         String custOptionSc = sc.nextLine();
                         if (custOptionSc.equals("1")) {
-                            customer.browseAvailableSpaces();
+                            customer.getAvailableSpaces();
                         } else if (custOptionSc.equals("5")) {
                             menu = getMenu();
                             break;
@@ -123,24 +131,20 @@ public class Main {
                                 customer.makeReservation(parseInput);
                             } catch (NumberFormatException e) {
                                 System.out.println("Please, Enter number ");
-                            } catch (NotFoundException e) {
-                                System.out.println(e.getMessage());
                             }
                         } else if (custOptionSc.equals("3")) {
                             System.out.println("---------------------------------------------------------");
-                            customer.ownReservation();
-                        } else if (custOptionSc.equals("4")) {
-                            System.out.println("---------------------------------------------------------");
-                            System.out.println("Please enter the ID which you want to cancel");
-                            try {
-                                String input = sc.nextLine();
-                                int parseInput = Integer.parseInt(input); // parse to clear input buffer
-                                customer.cancelReservation(parseInput);
-                            } catch (NumberFormatException e) {
-                                System.out.println("Please, Enter number ");
-                            } catch (NotFoundException e) {
-                                System.out.println(e.getMessage());
-                            }
+                            customer.ownReservations();
+                            } else if (custOptionSc.equals("4")) {
+                                System.out.println("---------------------------------------------------------");
+                                System.out.println("Please enter the ID which you want to cancel");
+                                try {
+                                    String input = sc.nextLine();
+                                    int parseInput = Integer.parseInt(input); // parse to clear input buffer
+                                    customer.cancelReservation(parseInput);
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Please, Enter number ");
+                                }
                         } else {
                             System.out.println("----------------------------------------------------------");
                             System.out.println("Please enter valid input (1, 2, 3, 4, 5)");
@@ -148,17 +152,6 @@ public class Main {
                     }
                     break;
             }
-        }
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("/Users/giorgi/Desktop/newfile/gaumarjoskaci.txt"))) {
-            objectOutputStream.writeObject(workspaceManager);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("/Users/giorgi/Desktop/newfile/gaumarjoskaci.txt"))) {
-            WorkspaceManager workspaceManager1 = (WorkspaceManager) objectInputStream.readObject();
-            System.out.println("Deserialization WorkSpaceManager: " + workspaceManager1.getSpaces());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 }
