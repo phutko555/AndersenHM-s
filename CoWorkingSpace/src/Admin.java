@@ -10,6 +10,12 @@ public class Admin implements Serializable {
     }
 
     public void addCoSpace(WorkSpaces workSpaces) {
+       for(WorkSpaces workSpaces1 : workspaceManager.getSpaces()){
+           if(workSpaces1.getId() == workSpaces.getId()){
+               System.out.println("WorkSpace With id " + workSpaces1.getId() + " already exists");
+               return;
+           }
+       }
         workspaceManager.getSpaces().add(workSpaces);
         System.out.println("Added successfully: " + workSpaces);
     }
