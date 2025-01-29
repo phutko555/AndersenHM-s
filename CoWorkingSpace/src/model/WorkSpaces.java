@@ -1,3 +1,5 @@
+package model;
+
 import java.io.Serializable;
 
 public class WorkSpaces implements Serializable {
@@ -23,6 +25,27 @@ public class WorkSpaces implements Serializable {
     public void setAvailabilityStatus(boolean availabilityStatus) {
         this.availabilityStatus = availabilityStatus;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "WorkSpace{" +

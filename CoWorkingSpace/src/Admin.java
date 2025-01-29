@@ -1,41 +1,43 @@
+import model.WorkSpaces;
+import service.workspace.WorkSpaceService;
 import java.io.Serializable;
+import java.sql.SQLException;
+
 public class Admin implements Serializable {
     private static final long serialVersionUID = 5467568632194107991L;
-    private WorkspaceManager workspaceManager;
+    private WorkSpaceService workSpaceService;
+
+    public Admin(WorkSpaceService workSpaceService) {
+        this.workSpaceService = workSpaceService;
+    }
 
     public Admin() {
     }
-    public Admin(WorkspaceManager workSpace) {
-        this.workspaceManager = workSpace;
+
+    public void addWorkSpace(WorkSpaces workSpaces) throws SQLException {
+        try{
+            workSpaceService.addWorkSpace(workSpaces);
+            System.out.println("Workspace Added successfully!");
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void addCoSpace(WorkSpaces workSpaces) {
-       for(WorkSpaces workSpaces1 : workspaceManager.getSpaces()){
-           if(workSpaces1.getId() == workSpaces.getId()){
-               System.out.println("WorkSpace With id " + workSpaces1.getId() + " already exists");
-               return;
-           }
-       }
-        workspaceManager.getSpaces().add(workSpaces);
-        System.out.println("Added successfully: " + workSpaces);
-    }
-    public void removeCoSpace(int id) throws NotFoundException{
-        for (int i = 0; i < workspaceManager.getSpaces().size(); i++) {
-            if (workspaceManager.getSpaces().get(i).getId() == id) {
-                workspaceManager.getSpaces().remove(i);
-                System.out.println("Workspace with ID " + id + " removed successfully.");
-                return;
-            }
+    public void removeWorkSpace(int id)throws SQLException{
+        try{
+            workSpaceService.removeWorkSpace(id);
+            System.out.println("Workspace with ID " + id + " removed successfully!");
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
         }
-        throw new NotFoundException("Workspace with ID " + id + " not found!");
     }
-    public void viewAllReservations(){
-        workspaceManager.getSpaces().stream().forEach(x -> {
-            if(!x.isAvailabilityStatus()){
-                System.out.println("Reservation: " + x);
-            }else{
-                System.out.println("There aren't any reservations");
-            }
-        });
+
+    public void viewAllReservations()throws SQLException{
+        try{
+            System.out.println("Reservations: ");
+            workSpaceService.viewAllReservations();
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
