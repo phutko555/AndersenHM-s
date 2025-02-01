@@ -1,15 +1,30 @@
 package model;
 
-import java.io.Serializable;
+import javax.persistence.*;
 
-public class WorkSpaces implements Serializable {
+@Entity
+@Table(name = "workspaces")
+public class WorkSpacesE {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String type;
+
     private double price;
     private boolean availabilityStatus;
 
-    public WorkSpaces(int id, String type, double price, boolean availabilityStatus) {
+    @ManyToOne
+    private AdminE admin;
+
+    @OneToOne(mappedBy = "workSpacesE")
+    private ReservationsE reservationsE;
+
+    public WorkSpacesE() {
+    }
+
+    public WorkSpacesE(String type, double price, boolean availabilityStatus) {
         this.id = id;
         this.type = type;
         this.price = price;
@@ -18,12 +33,6 @@ public class WorkSpaces implements Serializable {
 
     public int getId() {
         return id;
-    }
-    public boolean isAvailabilityStatus() {
-        return availabilityStatus;
-    }
-    public void setAvailabilityStatus(boolean availabilityStatus) {
-        this.availabilityStatus = availabilityStatus;
     }
 
     public void setId(int id) {
@@ -46,9 +55,17 @@ public class WorkSpaces implements Serializable {
         this.price = price;
     }
 
+    public boolean isAvailabilityStatus() {
+        return availabilityStatus;
+    }
+
+    public void setAvailabilityStatus(boolean availabilityStatus) {
+        this.availabilityStatus = availabilityStatus;
+    }
+
     @Override
     public String toString() {
-        return "WorkSpace{" +
+        return "WorkSpacesE{" +
                 "id=" + id +
                 ", type='" + type + '\'' +
                 ", price=" + price +
