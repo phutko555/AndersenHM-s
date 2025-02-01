@@ -1,13 +1,16 @@
-import dao.workspace.WorkSpaceDAO;
-import dao.workspace.WorkSpaceDAOImpl;
+import controller.AdminController;
+import controller.CustomerController;
 import dao.reservations.ReservationsDAO;
 import dao.reservations.ReservationsDAOImpl;
-import model.WorkSpaces;
-import service.workspace.WorkSpaceService;
-import service.reservation.ReservationsService;
+import dao.workspace.WorkSpaceDAO;
+import dao.workspace.WorkSpaceDAOImpl;
+import model.*;
+import service.admin.AdminService;
+import service.customer.CustomerService;
 
 import java.sql.SQLException;
 import java.util.Scanner;
+
 public class Main {
     public static String getMenu() {
         Scanner sc = new Scanner(System.in);
@@ -25,25 +28,14 @@ public class Main {
         }
         return menu;
     }
+
     public static void main(String[] args) throws SQLException {
-        String directory = "/Users/giorgi/AndersenHM-s/CoWorkingSpace/classes";
-        try {
-            CustomClassLoader loader = new CustomClassLoader(directory);
-            Class<?> clazz = loader.loadClass("Admin");
-
-            Object adminInstance = clazz.getDeclaredConstructor().newInstance();
-            System.out.println("Successfully loaded Admin class: " + adminInstance);
-
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
-        }
         System.out.println("Welcome to The Coworking Space Reservation Application !");
         Scanner sc = new Scanner(System.in);
         String menu = getMenu();
         WorkSpaceDAO workSpaceDAO = new WorkSpaceDAOImpl();
-        WorkSpaceService workSpaceService = new WorkSpaceService(workSpaceDAO);
-        Admin ad = new Admin(workSpaceService);
+        AdminService workSpaceService = new AdminService(workSpaceDAO);
+        AdminController ad = new AdminController(workSpaceService);
         while (!menu.equals("3")) {
             switch (menu) {
                 case "1":
@@ -61,21 +53,20 @@ public class Main {
                         String adminOptionSc = sc.nextLine();
                         if (adminOptionSc.equals("1")) {
                             System.out.println("---------------------------------------------------------");
-                            System.out.println("Enter WorkSpace attributes: ex:(\" 1 Giorgi 20.5 true \") separated by spaces:");
+                            System.out.println("Enter WorkSpace attributes: ex:(\" Giorgi 20.5 true \") separated by spaces:");
                             String attributes = sc.nextLine();
                             if (attributes.trim().isEmpty()) {
                                 System.out.println("Attributes is empty, please input values ");
                             } else {
                                 String[] split = attributes.split("\\s+");
-                                if (split.length == 4) {
-                                    int coId = Integer.parseInt(split[0]);
-                                    String name = split[1];
-                                    double price = Double.parseDouble(split[2]);
-                                    boolean available = Boolean.parseBoolean(split[3]);
+                                if (split.length == 3) {
+                                    String name = split[0];
+                                    double price = Double.parseDouble(split[1]);
+                                    boolean available = Boolean.parseBoolean(split[2]);
                                     System.out.println("^----------------------------------------------------------^");
-                                    ad.addWorkSpace(new WorkSpaces(coId, name, price, available));
+                                    ad.addWorkSpace(new WorkSpacesE(name, price, available));
                                 } else {
-                                    System.out.println("Invalid input form. please provide 4 attributes");
+                                    System.out.println("Invalid input form. please provide 3 attributes");
                                 }
                             }
                         } else if (adminOptionSc.equals("3")) {
@@ -87,7 +78,7 @@ public class Main {
                             try {
                                 String input = sc.nextLine();
                                 int parseInput = Integer.parseInt(input); // parse to clear input buffer
-                                ad.removeWorkSpace(parseInput);
+                                ad.removeWorkspace(parseInput);
                             } catch (NumberFormatException e) {
                                 System.out.println("Please, Enter number ");
                             }
@@ -102,8 +93,8 @@ public class Main {
                     break;
                 case "2":
                     ReservationsDAO reservationsDAO = new ReservationsDAOImpl();
-                    ReservationsService reservationsService = new ReservationsService(reservationsDAO);
-                    Customer customer = new Customer(reservationsService);
+                    CustomerService reservationsService = new CustomerService(reservationsDAO);
+                    CustomerController customer = new CustomerController(reservationsService);
                     while (true) {
                         String custOption = ("""
                                 Customer Menu:
@@ -135,23 +126,23 @@ public class Main {
                         } else if (custOptionSc.equals("3")) {
                             System.out.println("---------------------------------------------------------");
                             customer.ownReservations();
-                            } else if (custOptionSc.equals("4")) {
-                                System.out.println("---------------------------------------------------------");
-                                System.out.println("Please enter the ID which you want to cancel");
-                                try {
-                                    String input = sc.nextLine();
-                                    int parseInput = Integer.parseInt(input); // parse to clear input buffer
-                                    customer.cancelReservation(parseInput);
-                                } catch (NumberFormatException e) {
-                                    System.out.println("Please, Enter number ");
-                                }
+                        } else if (custOptionSc.equals("4")) {
+                            System.out.println("---------------------------------------------------------");
+                            System.out.println("Please enter the ID which you want to cancel");
+                            try {
+                                String input = sc.nextLine();
+                                int parseInput = Integer.parseInt(input); // parse to clear input buffer
+                                customer.cancelReservation(parseInput);
+                            } catch (NumberFormatException e) {
+                                System.out.println("Please, Enter number ");
+                            }
                         } else {
                             System.out.println("----------------------------------------------------------");
                             System.out.println("Please enter valid input (1, 2, 3, 4, 5)");
                         }
                     }
                     break;
+                        }
+                    }
             }
         }
-    }
-}

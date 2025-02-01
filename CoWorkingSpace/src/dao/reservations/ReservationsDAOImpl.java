@@ -1,116 +1,98 @@
 package dao.reservations;
-import utils.DatabaseConnectionManager;
-import java.sql.*;
+import model.ReservationsE;
+import model.WorkSpacesE;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import utils.HibernateUtil;
+import java.sql.SQLException;
+import java.util.List;
+
 public class ReservationsDAOImpl implements ReservationsDAO{
     @Override
-    public void getAvailableSpaces() {
-        String sql = "SELECT * FROM workspacemanager WHERE availabilitystatus = true";
-        try(Connection connection = DatabaseConnectionManager.getConnection()){
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            while(resultSet.next()){
-                int id = resultSet.getInt("id");
-                String type = resultSet.getString("type");
-                double price = resultSet.getInt("price");
-                boolean available = resultSet.getBoolean("availabilitystatus");
-                System.out.println("ID: " + id + ", Type: " + type + ", Price: $" + price + ", Available: " + available);
+    public void getAvailableSpaces() throws SQLException {
+        Session session = HibernateUtil.getSession();
+        try {
+            Query query = session.createQuery("from WorkSpacesE where availabilityStatus = true");
+            List<WorkSpacesE> workSpacesE = query.list();
+            if(workSpacesE.isEmpty()){
+                throw new SQLException("There are no available workspaces.");
             }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public boolean isAvailableSpaces() throws SQLException {
-        String sql = "SELECT 1 FROM workspacemanager WHERE availabilitystatus = true";
-        try(Connection connection = DatabaseConnectionManager.getConnection()){
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            return resultSet.next();
+            for (WorkSpacesE workSpacesE1 : workSpacesE) {
+                System.out.println(workSpacesE1);
+            }
+        }finally {
+            session.close();
         }
     }
 
     @Override
     public void makeReservation(int id) throws SQLException {
-        String sql = "INSERT INTO reservations (workspace_id) VALUES (?)";
-        try(Connection connection = DatabaseConnectionManager.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
-            preparedStatement.executeUpdate();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public boolean isAvailable(int id) throws SQLException {
-        String sql = "SELECT id FROM workspacemanager WHERE id = ? AND availabilitystatus = true";
-        try(Connection connection = DatabaseConnectionManager.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
-        }
-    }
-
-    @Override
-    public void changeAvailability(int id) throws SQLException {
-        String sql = "UPDATE workspacemanager SET availabilitystatus = false WHERE id = ?";
-        try(Connection connection = DatabaseConnectionManager.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
-            preparedStatement.executeUpdate();
-        }catch (SQLException e){
-            e.printStackTrace();
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            WorkSpacesE workSpacesE = session.get(WorkSpacesE.class, id);
+            if (workSpacesE != null) {
+                if(!workSpacesE.isAvailabilityStatus()){
+                    throw new SQLException("Workspace with ID " + id + "is not available");
+                }
+                ReservationsE reservationsE = new ReservationsE();
+                workSpacesE.setAvailabilityStatus(false);
+                reservationsE.setWorkSpacesE(workSpacesE);
+                session.save(reservationsE);
+                System.out.println("Workspace with ID " + id + " reserved successfully.");
+            } else {
+                throw new SQLException("Workspace with ID " + id + " not found.");
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new SQLException("Error reserving workspace: " + e.getMessage(), e);
+        } finally {
+            session.close();
         }
     }
 
     @Override
     public void ownReservations() throws SQLException {
-        String sql = "SELECT * FROM workspacemanager WHERE availabilitystatus = false";
-        try(Connection connection = DatabaseConnectionManager.getConnection()){
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            while(resultSet.next()){
-                int id = resultSet.getInt("id");
-                String type = resultSet.getString("type");
-                double price = resultSet.getInt("price");
-                boolean available = resultSet.getBoolean("availabilitystatus");
-                System.out.println("ID: " + id + ", Type: " + type + ", Price: $" + price + ", Available: " + available);
+        Session session = HibernateUtil.getSession();
+        try{
+            Query query = session.createQuery("from ReservationsE");
+            List<ReservationsE> reservationsES = query.list();
+            if(reservationsES.isEmpty()){
+                throw new SQLException("There are no available workspaces.");
             }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public boolean areReservations() throws SQLException {
-        String sql = "SELECT 1 FROM workspacemanager WHERE availabilitystatus = false";
-        try(Connection connection = DatabaseConnectionManager.getConnection()){
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            return resultSet.next();
+            for(ReservationsE reservationsE : reservationsES){
+                System.out.println("ID: " +reservationsE.getId() + ")  " + reservationsE.getWorkSpacesE());
+            }
+        }finally {
+            session.close();
         }
     }
 
     @Override
     public void cancelReservation(int id) throws SQLException {
-        String sql = "DELETE FROM reservations WHERE id = ?";
-        try(Connection connection = DatabaseConnectionManager.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
-            preparedStatement.executeUpdate();
-        }
-    }
-
-    @Override
-    public boolean reservationExists(int id) throws SQLException {
-        String sql = "SELECT 1 FROM reservations WHERE id = ?";
-        try(Connection connection = DatabaseConnectionManager.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = null;
+        try{
+            transaction = session.beginTransaction();
+            ReservationsE reservationsE = session.get(ReservationsE.class,id);
+            if(reservationsE != null){
+                reservationsE.getWorkSpacesE().setAvailabilityStatus(true);
+                session.remove(reservationsE);
+                transaction.commit();
+                System.out.println("Reservation with ID " + id + " removed successfully.");
+            }else{
+                throw new SQLException("Reservation with ID " + id + " not found.");
+            }
+        }catch (SQLException e){
+            if (transaction != null) transaction.rollback();
+            throw e;
+        }finally {
+            session.close();
         }
     }
 }
