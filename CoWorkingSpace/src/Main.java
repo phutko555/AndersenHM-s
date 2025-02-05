@@ -1,13 +1,8 @@
 import controller.AdminController;
 import controller.CustomerController;
-import dao.reservations.ReservationsDAO;
-import dao.reservations.ReservationsDAOImpl;
-import dao.workspace.WorkSpaceDAO;
-import dao.workspace.WorkSpaceDAOImpl;
 import model.*;
-import service.admin.AdminService;
-import service.customer.CustomerService;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -30,12 +25,11 @@ public class Main {
     }
 
     public static void main(String[] args) throws SQLException {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        AdminController ad = (AdminController) applicationContext.getBean("adminController");
         System.out.println("Welcome to The Coworking Space Reservation Application !");
         Scanner sc = new Scanner(System.in);
         String menu = getMenu();
-        WorkSpaceDAO workSpaceDAO = new WorkSpaceDAOImpl();
-        AdminService workSpaceService = new AdminService(workSpaceDAO);
-        AdminController ad = new AdminController(workSpaceService);
         while (!menu.equals("3")) {
             switch (menu) {
                 case "1":
@@ -92,9 +86,7 @@ public class Main {
                     }
                     break;
                 case "2":
-                    ReservationsDAO reservationsDAO = new ReservationsDAOImpl();
-                    CustomerService reservationsService = new CustomerService(reservationsDAO);
-                    CustomerController customer = new CustomerController(reservationsService);
+                    CustomerController customer = (CustomerController) applicationContext.getBean("customerController");
                     while (true) {
                         String custOption = ("""
                                 Customer Menu:
